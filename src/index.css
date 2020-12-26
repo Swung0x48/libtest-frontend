@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.bookcard {
+  box-sizing: border-box;
+  /*height: 500px;*/
+  width: 18rem;
+  position: relative;
+  flex-direction: column;
+  border: 1px solid rgba(0,0,0,.125);
+  padding: 0 10px 0;
+  margin: 0.5rem!important;
+}
+
+.grid {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.slideshow {
+  width: 100%;
+  height: 33%;
+  margin: auto;
+}
+
+.table {
+  width: 90%;
+}
