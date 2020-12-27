@@ -17,7 +17,7 @@ function BookCardGrid(props) {
     return (
         <div className={"grid"}>
             {
-                arr.map((e, index) => <BookCard id={index}/>)
+                arr.map((e, index) => <BookCard key={index}/>)
             }
         </div>
     )

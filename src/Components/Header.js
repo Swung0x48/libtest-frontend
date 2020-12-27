@@ -1,31 +1,38 @@
 import React from "react"
-import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from "react-bootstrap"
-import LoginButton from "./LoginButton";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap"
+import LoginButton from "./LoginButton"
+import {Link, NavLink} from "react-router-dom"
 
-function Header(props) {
-    return (
-        <Navbar fixed="top" bg="light" expand="lg">
-        <Navbar.Brand href="#home">Library Manager</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                </NavDropdown>
-            </Nav>
-            {/*<Form inline>*/}
-            {/*    <FormControl type="text" placeholder="Search" className="mr-sm-2" />*/}
-            {/*    <Button variant="outline-success">Search</Button>*/}
-            {/*</Form>*/}
-            <LoginButton name={"Swung"} />
-        </Navbar.Collapse>
-    </Navbar>)
+class Header extends React.Component {
+    constructor(props) {
+        super(props)
+
+    }
+
+    render() {
+        return (
+            <div className="header">
+                <Navbar fixed="top" bg="light" expand="lg">
+                    <Navbar.Brand href="#">Library Manager</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="mr-auto">
+                            <Nav.Link><NavLink to="/" className={"link top"}>Home</NavLink></Nav.Link>
+                            <NavDropdown title="Operations" id="basic-nav-dropdown">
+                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                                <NavDropdown.Item><Link to="/checkout"
+                                                        className={"link"}>Checkout</Link></NavDropdown.Item>
+                                <NavDropdown.Divider/>
+                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                        <LoginButton name={this.props.username}/>
+                    </Navbar.Collapse>
+                </Navbar>
+            </div>
+        )
+    }
 }
 
 export default Header

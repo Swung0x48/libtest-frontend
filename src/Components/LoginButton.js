@@ -1,9 +1,10 @@
 import React from "react"
-import {Button, Container, NavDropdown} from "react-bootstrap"
+import { Button, NavDropdown } from "react-bootstrap"
+import {NavLink} from "react-router-dom"
 
 function LoginButton(props) {
     console.log(props)
-    if (props.name !== undefined) {
+    if (props.name !== undefined && props.name !== null) {
         return (
             <NavDropdown id="user" title={"Hi, " + props.name + "!"}>
                 <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
@@ -11,7 +12,11 @@ function LoginButton(props) {
         )
     } else {
         return (
-                <Button variant="outline-primary" className={"mx-2"}>Login</Button>
+                <Button variant="outline-primary" className={"mx-2"}>
+                    <NavLink to="/login" className="login-button-link">
+                        Login
+                    </NavLink>
+                </Button>
         )
     }
 }

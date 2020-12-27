@@ -37,6 +37,43 @@ code {
   margin: auto;
 }
 
+.login-page {
+  width: 90%;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 .table {
   width: 90%;
+}
+
+.link {
+  color: #212529;
+}
+
+.link:hover {
+  color: #212529;
+  text-decoration: none;
+}
+
+.top:active {
+  color: #212529!important;
+}
+
+.link:active {
+  color: #ffffff;
+}
+
+.login-button-link:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.login-button-link:active {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.top-margin {
+  margin-top: 70px;
 }

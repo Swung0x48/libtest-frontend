@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap"
 
 function RecordTable(props) {
     return (
-        <Table striped bordered hover className={"table"}>
+        <Table striped bordered hover className={"table top-margin"}>
             <thead>
             <tr>
                 <th>#</th>
