@@ -1,6 +1,6 @@
 import React from "react"
 import { Form, Button } from "react-bootstrap"
-import {Login} from "../Services/Authentication";
+import {Login} from "../Services/Authentication"
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -16,11 +16,11 @@ class LoginPage extends React.Component {
     }
 
     handleUsernameChange(e) {
-        this.setState({username: e.target.value});
+        this.setState({username: e.target.value})
     }
 
     handlePasswordChange(e) {
-        this.setState({password: e.target.value});
+        this.setState({password: e.target.value})
     }
 
     submitForm(e) {
@@ -29,6 +29,7 @@ class LoginPage extends React.Component {
         console.log(this.state.password)
         Login(this.state.username, this.state.password)
             .then(() => {
+                // this.props.history.push("/")
                 window.location.href = "/"
             })
     }
