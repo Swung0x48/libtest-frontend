@@ -22,15 +22,15 @@ class LoginButton extends React.Component {
                 <NavDropdown id="user" title={"Hi, " + this.props.name + "!"}>
                     <NavDropdown.Item
                     onClick={this.handleClick}>
-                        Logout
+                        退出登录
                     </NavDropdown.Item>
                 </NavDropdown>
             )
         } else {
             return (
                     <Button variant="outline-primary" className={"mx-2"}>
-                        <NavLink to="/login" className="login-button-link">
-                            Login
+                        <NavLink to="/login" className="button-link">
+                            登录
                         </NavLink>
                     </Button>
             )

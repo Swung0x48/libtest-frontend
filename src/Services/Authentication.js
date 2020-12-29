@@ -16,9 +16,25 @@ async function Login(username, password) {
             resolve()
         }).catch(err => {
             reject(err)
-            // console.log(err)
         })
     })
 }
 
-export { Login, token }
+async function Register(username, password) {
+    return new Promise((resolve, reject) => {
+        axios.post(baseUrl + "/api/user/register", {
+            username: username,
+            password: password
+        }).then(response => {
+            token = response.data.token
+            console.log(token)
+            localStorage.setItem("username", username)
+            localStorage.setItem("token", token)
+            resolve()
+        }).catch(err => {
+            reject(err)
+        })
+    })
+}
+
+export { Login, Register, token }

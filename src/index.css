@@ -64,12 +64,12 @@ code {
   color: #ffffff;
 }
 
-.login-button-link:hover {
+.button-link:hover {
   text-decoration: none;
   color: #ffffff;
 }
 
-.login-button-link:active {
+.button-link:active {
   text-decoration: none;
   color: #ffffff;
 }
