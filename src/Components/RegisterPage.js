@@ -9,12 +9,12 @@ class RegisterPage extends React.Component {
             username: "",
             password: "",
             secondaryPassword: "",
-            warning: false
         }
 
         this.submitForm = this.submitForm.bind(this)
         this.handleUsernameChange = this.handleUsernameChange.bind(this)
         this.handlePasswordChange = this.handlePasswordChange.bind(this)
+        this.handleSecondaryPasswordChange = this.handleSecondaryPasswordChange.bind(this)
     }
 
     handleUsernameChange(e) {
@@ -27,7 +27,6 @@ class RegisterPage extends React.Component {
 
     handleSecondaryPasswordChange(e) {
         this.setState({secondaryPassword: e.target.value})
-
     }
 
     submitForm(e) {
@@ -66,7 +65,7 @@ class RegisterPage extends React.Component {
                 {/*    <Form.Check type="checkbox" label="Check me out" />*/}
                 {/*</Form.Group>*/}
                 <Button variant="primary" type="submit">
-                    登录
+                    注册
                 </Button>
             </Form>)
     }

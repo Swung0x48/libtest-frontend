@@ -6,7 +6,6 @@ import {Link, NavLink} from "react-router-dom"
 class Header extends React.Component {
     constructor(props) {
         super(props)
-
     }
 
     render() {
@@ -28,16 +27,30 @@ class Header extends React.Component {
                                     </NavDropdown.Item>) : null
                                 }
                                 <NavDropdown.Divider/>
-                                <NavDropdown.Item>
-                                    <Link to="/admin/books" className={"link"}>
-                                        管理所有图书
-                                    </Link>
-                                </NavDropdown.Item>
-                                <NavDropdown.Item>
-                                    <Link to="/admin/orders" className={"link"}>
-                                        管理借阅记录
-                                    </Link>
-                                </NavDropdown.Item>
+                                {
+                                    this.props.role === "ADMIN" ?
+                                    (<NavDropdown.Item>
+                                        <Link to="/admin/books" className={"link"}>
+                                            管理所有图书
+                                        </Link>
+                                    </NavDropdown.Item>) : null
+                                }
+                                {
+                                    this.props.role === "ADMIN" ?
+                                    (<NavDropdown.Item>
+                                        <Link to="/admin/orders" className={"link"}>
+                                            管理借阅记录
+                                        </Link>
+                                    </NavDropdown.Item>) : null
+                                }
+                                {
+                                    this.props.role === "ADMIN" ?
+                                    (<NavDropdown.Item>
+                                        <Link to="/admin/users" className={"link"}>
+                                            管理用户
+                                        </Link>
+                                    </NavDropdown.Item>) : null
+                                }
                             </NavDropdown>
                         </Nav>
                         <LoginButton name={this.props.username}/>

@@ -1,54 +1,66 @@
 import React from "react"
 import {Button} from "react-bootstrap"
-import axios from "axios";
+import axios from "axios"
 
 class AdminUserRow extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            returnTime: this.props.records.returnTime
+            // returnTime: this.props.order.returnTime,
+            show: true,
+            role: this.props.user.role,
+            // banned: this.props.user.role === "banned"
         }
 
-        this.handleClick = this.handleClick.bind(this)
+        this.onBan = this.onBan.bind(this)
+        this.onUnban = this.onUnban.bind(this)
+        this.onForceDelete = this.onForceDelete.bind(this)
     }
 
-    handleClick() {
-        let header = {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token")
-        }
-
-        console.log(this.props.records.orderID)
-        axios.put("http://localhost:8080/api/order/return/" + this.props.records.orderID, {}, {headers: header})
-            .then(responese => {
-                console.log(responese.data)
-                console.log(responese.data.returnTime)
+    onBan() {
+        let header = {"Authorization": "Bearer " + localStorage.getItem("token")}
+        axios.put("http://localhost:8080/api/user/ban/" + this.props.user.userId, {},{headers: header})
+            .then(response => {
                 this.setState(prevState => {
-                    return {returnTime: responese.data.returnTime}
+                    return {role: response.data.role}
                 })
             })
             .catch(err => console.log(err))
     }
 
-    // componentWillMount() {
-    //     this.setState({returnTime: this.props.records.returnTime})
-    // }
+    onUnban() {
+        let header = {"Authorization": "Bearer " + localStorage.getItem("token")}
+        axios.put("http://localhost:8080/api/user/unban/" + this.props.user.userId, {headers: header})
+            .then(response => this.setState({role: response.data.role}))
+            .catch(err => console.log(err))
+    }
+
+    onForceDelete() {
+        let header = {"Authorization": "Bearer " + localStorage.getItem("token")}
+        axios.delete("http://localhost:8080/api/user/" + this.props.user.userId, {headers: header})
+            .then(() => this.setState({show: false}))
+            .catch(err => console.log(err))
+    }
 
     render() {
         return (
-            <tr>
-                <td>{this.props.id}</td>
-                <td>{this.props.records.orderID}</td>
-                <td>{this.props.records.book.bookID}</td>
-                <td>{this.props.records.book.bookName}</td>
-                <td>{this.props.records.lendTime}</td>
-                <td>{this.state.returnTime || null}</td>
-                <td>{this.state.returnTime ? "已归还" : "未归还"}</td>
-                <td><Button variant="success" onClick={this.handleClick} disabled={!!this.state.returnTime}>归还</Button></td>
-            </tr>
+            this.state.show ?
+                (<tr>
+                    <td>{this.props.id}</td>
+                    <td>{this.props.user.userId}</td>
+                    <td>{this.props.user.userName}</td>
+                    <td>{this.state.role}</td>
+                    <td>
+                        {
+                            this.state.role === "banned" ?
+                                <Button variant="outline-success" onClick={this.onUnban}>解封用户</Button> :
+                                <Button variant="outline-danger" onClick={this.onBan}>封禁用户</Button>
+                        }
+                        <Button variant="danger" onClick={this.onForceDelete}>删除用户</Button>
+                    </td>
+                </tr>) : null
         )
     }
 }
 
 export default AdminUserRow
-

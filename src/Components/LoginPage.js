@@ -32,6 +32,10 @@ class LoginPage extends React.Component {
                 // this.props.history.push("/")
                 window.location.href = "/"
             })
+            .catch(err => {
+                alert("用户名或密码错误，或该账号已被封禁")
+                console.log(err)
+            })
     }
 
     render() {

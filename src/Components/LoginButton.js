@@ -12,6 +12,7 @@ class LoginButton extends React.Component {
     handleClick() {
         localStorage.removeItem("username")
         localStorage.removeItem("token")
+        localStorage.removeItem("role")
         window.location.href = "/"
     }
 
@@ -28,11 +29,18 @@ class LoginButton extends React.Component {
             )
         } else {
             return (
+                <div>
                     <Button variant="outline-primary" className={"mx-2"}>
                         <NavLink to="/login" className="button-link">
                             登录
                         </NavLink>
                     </Button>
+                    <Button variant="outline-success" className={"mx-2"}>
+                        <NavLink to="/register" className="button-link register-link">
+                            注册
+                        </NavLink>
+                    </Button>
+                </div>
             )
         }
     }

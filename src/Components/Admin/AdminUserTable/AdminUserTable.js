@@ -7,7 +7,7 @@ class AdminUserTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            records: []
+            users: []
         }
     }
 
@@ -17,9 +17,9 @@ class AdminUserTable extends React.Component {
             "Authorization": "Bearer " + localStorage.getItem("token")
         }
 
-        axios.get("http://localhost:8080/api/order/my",  {headers: header})
+        axios.get("http://localhost:8080/api/user",  {headers: header})
             .then(response => {
-                this.setState({records: response.data})
+                this.setState({users: response.data})
             })
             .catch(err => console.log(err))
     }
@@ -30,20 +30,17 @@ class AdminUserTable extends React.Component {
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>借阅记录 ID</th>
-                    <th>图书 ID</th>
-                    <th>书名</th>
-                    <th>借出时间</th>
-                    <th>归还时间</th>
-                    <th>状态</th>
+                    <th>用户 ID</th>
+                    <th>用户名</th>
+                    <th>用户组</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 {
-                    this.state.records
+                    this.state.users
                         .map((e, index) =>
-                            <AdminUserRow key={index} id={index + 1} records={e} />)
+                            <AdminUserRow key={index} id={index + 1} user={e} />)
                 }
                 </tbody>
             </Table>

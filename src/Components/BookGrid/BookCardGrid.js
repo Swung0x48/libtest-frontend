@@ -2,6 +2,7 @@ import React from "react"
 import BookCard from "./BookCard"
 import axios from "axios";
 import { Spinner } from "react-bootstrap"
+import {importAll} from "../../Helper";
 
 
 class BookCardGrid extends React.Component {
@@ -25,12 +26,15 @@ class BookCardGrid extends React.Component {
 
 
     componentDidMount() {
+        const images = importAll(require.context('../../../public/assets/img', false, /\.(png|jpe?g|svg)$/));
+        console.log(images)
         axios.get("http://localhost:8080/api/book/get", {
             headers: {"Authorization": "Bearer " + localStorage.getItem("token")}
         }).then(res => {
             this.setState({
                 isLoading: false,
-                books: res.data
+                books: res.data,
+                images: images
             })
         })
     }
@@ -53,7 +57,7 @@ class BookCardGrid extends React.Component {
                 </Spinner>) :
                 (<div className={"grid"}>
                     {
-                        this.state.books.map((e, index) => <BookCard key={index} id={index + 1} book={e} showButton={!!this.props.username}/>)
+                        this.state.books.map((e, index) => <BookCard key={index} id={index + 1} book={e} image={this.state.images[index]} showButton={!!this.props.username}/>)
                     }
                 </div>)
         )
